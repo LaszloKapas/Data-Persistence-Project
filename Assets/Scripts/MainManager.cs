@@ -27,7 +27,7 @@ public class MainManager : MonoBehaviour
         if(PlayerPrefs.instance != null)
         {
             playerName = PlayerPrefs.instance.playerName;
-            BestScoreText.text = $"{playerName}";
+            BestScoreText.text = $"{playerName} Best Score : {m_Points}";
         }
 
         const float step = 0.6f;
@@ -63,6 +63,7 @@ public class MainManager : MonoBehaviour
         }
         else if (m_GameOver)
         {
+            BestScoreText.text = $"{playerName} Best Score : {m_Points}";
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

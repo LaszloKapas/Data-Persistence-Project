@@ -9,6 +9,7 @@ public class PlayerPrefs : MonoBehaviour
     public static PlayerPrefs instance;
 
     public Text bestScore;
+    public string playerName;
 
     private void Awake()
     {
@@ -18,6 +19,7 @@ public class PlayerPrefs : MonoBehaviour
             return;
         }
 
+        
         instance = this;
         DontDestroyOnLoad(gameObject);
     }

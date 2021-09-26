@@ -39,6 +39,7 @@ public class StartMenu : MonoBehaviour
     public void Quit()
     {
         // save playerdata
+        PlayerPrefs.instance.SaveBestScore();
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
 #else

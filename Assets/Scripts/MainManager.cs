@@ -28,6 +28,7 @@ public class MainManager : MonoBehaviour
         if(PlayerPrefs.instance != null)
         {
             playerName = PlayerPrefs.instance.playerName;
+            PlayerPrefs.instance.LoadBestScore();
             bestScore = PlayerPrefs.instance.bestScore;
             BestScoreText.text = $"{playerName} Best Score : {bestScore}";
         }
@@ -87,6 +88,7 @@ public class MainManager : MonoBehaviour
         {
             bestScore = m_Points;
             PlayerPrefs.instance.bestScore = bestScore;
+            PlayerPrefs.instance.SaveBestScore();
             BestScoreText.text = $"{playerName} Score : {bestScore}";
         }
         

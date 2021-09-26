@@ -8,7 +8,7 @@ public class PlayerPrefs : MonoBehaviour
 {
     public static PlayerPrefs instance;
 
-    public Text bestScore;
+    public int bestScore;
     public string playerName;
 
     private void Awake()
@@ -27,7 +27,7 @@ public class PlayerPrefs : MonoBehaviour
     [System.Serializable]
     class SavePlayerData
     {
-        public Text bestScore;
+        public int bestScore;
     }
 
     public void SaveBestScore()

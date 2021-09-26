@@ -13,6 +13,7 @@ public class MainManager : MonoBehaviour
     public Text ScoreText;
     public Text BestScoreText;
     public string playerName;
+    public int bestScore;
     public GameObject GameOverText;
     
     private bool m_Started = false;
@@ -27,7 +28,8 @@ public class MainManager : MonoBehaviour
         if(PlayerPrefs.instance != null)
         {
             playerName = PlayerPrefs.instance.playerName;
-            BestScoreText.text = $"{playerName} Best Score : {m_Points}";
+            bestScore = PlayerPrefs.instance.bestScore;
+            BestScoreText.text = $"{playerName} Best Score : {bestScore}";
         }
 
         const float step = 0.6f;
@@ -52,6 +54,8 @@ public class MainManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
+              
+                BestScoreText.text = $"{playerName} Best Score : {bestScore}";
                 m_Started = true;
                 float randomDirection = Random.Range(-1.0f, 1.0f);
                 Vector3 forceDir = new Vector3(randomDirection, 1, 0);
@@ -63,7 +67,7 @@ public class MainManager : MonoBehaviour
         }
         else if (m_GameOver)
         {
-            BestScoreText.text = $"{playerName} Best Score : {m_Points}";
+            BestScoreText.text = $"{playerName} Best Score : {bestScore}";
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -78,8 +82,14 @@ public class MainManager : MonoBehaviour
     }
 
     public void GameOver()
-    {
-        BestScoreText.text = $"{playerName} Score : {m_Points}";
+    {   
+        if(m_Points > bestScore)
+        {
+            bestScore = m_Points;
+            PlayerPrefs.instance.bestScore = bestScore;
+            BestScoreText.text = $"{playerName} Score : {bestScore}";
+        }
+        
         m_GameOver = true;
         GameOverText.SetActive(true);
     }
